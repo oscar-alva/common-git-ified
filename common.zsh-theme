@@ -94,7 +94,7 @@ common_bg_jobs() {
     if [[ $unstaged_count -gt 0 ]]; then
       output+="%{$fg[$COMMON_COLORS_GIT_STATUS_UNSTAGED]%}↓${unstaged_count}%f "
     fi
-    if [[ $staged_count -gt 0 ]], then
+    if [[ $staged_count -gt 0 ]]; then
       output+="%{$fg[$COMMON_COLORS_GIT_STATUS_STAGED]%}↑${staged_count}%f "
     fi
 
