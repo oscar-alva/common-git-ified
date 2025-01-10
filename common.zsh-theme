@@ -90,7 +90,14 @@ common_bg_jobs() {
   staged_count=$(git status --porcelain 2>/dev/null | grep -c "^[MADRCU]")
 
   if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-    echo -n "%{$fg[$COMMON_COLORS_GIT_STATUS_UNSTAGED]%}↓${unstaged_count}%f "
-    echo -n "%{$fg[$COMMON_COLORS_GIT_STATUS_STAGED]%}↑${staged_count}%f "
+    local output=""
+    if [[ $unstaged_count -gt 0 ]]; then
+      output+="%{$fg[$COMMON_COLORS_GIT_STATUS_UNSTAGED]%}↓${unstaged_count}%f "
+    fi
+    if [[ $staged_count -gt 0 ]], then
+      output+="%{$fg[$COMMON_COLORS_GIT_STATUS_STAGED]%}↑${staged_count}%f "
+    fi
+
+    echo -n "${output}"
   fi
 }
